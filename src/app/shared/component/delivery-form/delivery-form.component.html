@@ -1,0 +1,87 @@
+<div>
+    <form>
+        <fieldset>
+
+            <div class="ui-inputgroup">
+                <input type="text" pInputText placeholder="Numero client" name="customerNumber"
+                    [(ngModel)]="customerNumber" />
+                <button pButton type="button" label="Recherche" (click)="getUser(customerNumber)"></button>
+
+            </div>
+
+            <fieldset *ngIf="customer">
+
+
+                <span class="ui-float-label form_delivery">
+                    <input type="text" pInputText name="customer_customerNumber" id="customer_customerNumber"
+                        [(ngModel)]="customer.customerNumber">
+                    <label for="customer_customerNumber">Numero client</label>
+                </span>
+                <span class="ui-float-label form_delivery">
+                    <input type="text" pInputText name="customer_contactName" id="customer_contactName"
+                        [(ngModel)]="customer.contactName">
+                    <label for="customer_contactName">Contact Client</label>
+                </span>
+
+                <span class="ui-float-label form_delivery">
+                    <input type="text" pInputText name="customer_phone" id="customer_phone"
+                        [(ngModel)]="customer.phone">
+                    <label for="customer_phone">Telephone</label>
+                </span>
+
+                <p-table [columns]="cols" [value]="customer.customerListDeliveryAddress" [(selection)]="selectedAddress"
+                    dataKey="idAddress">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th style="width: 3em"></th>
+                            <th *ngFor="let col of columns">
+                                {{col.header}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr>
+                            <td>
+                                <p-tableRadioButton [value]="rowData"></p-tableRadioButton>
+                            </td>
+                            <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                               
+                                <p-checkbox name="floor"  *ngIf="col.field==='floor'" [(ngModel)]="rowData[col.field]" binary="true"></p-checkbox>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div style="text-align: left">
+                            Selected Address : {{selectedAddress ? 
+                        selectedAddress.idAddress + ' - ' + selectedAddress.streetOne + ' - ' + selectedAddress.zipCode + ' - ' + selectedAddress.city
+                        : 'none'}}
+                        </div>
+                    </ng-template>
+                </p-table>
+                <!-- END TABLE-->
+
+                <p-checkbox name="customer_contactName" label="Rangement" [(ngModel)]="customer.arragement" binary="true"></p-checkbox>
+            </fieldset>
+
+
+
+
+            <!-- <fieldset>
+               <h3>Livraison</h3>
+               <label for="">nombre colis</label>
+               <input type="number" name="numberPackage" id="numberPackage">
+               <label>Poids total</label>
+
+           </fieldset> -->
+        </fieldset>
+        <fieldset>
+
+
+        </fieldset>
+        <fieldset>
+            <button type="submit">Valider</button>
+            <button type="reset">RaZ</button>
+        </fieldset>
+    </form>
+</div>
