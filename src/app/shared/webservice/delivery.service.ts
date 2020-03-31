@@ -4,8 +4,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { catchError } from 'rxjs-compat/operators/catchError';
 import { Observable, } from 'rxjs-compat';
-import { Delivery } from '../class/delivery';
 import { throwError } from 'rxjs';
+import { Delivery } from '../class/delivery';
 
 @Injectable({
   providedIn: 'root'

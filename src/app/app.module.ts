@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 //import { RouterModule } from '@angular/router';
@@ -22,10 +22,11 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/component/navbar/navbar.component';
 import { DeliveryFormComponent } from './shared/component/delivery-form/delivery-form.component';
 import { AllCustomerComponent } from './shared/component/all.customer/all.customer.component';
-import { AddCarrierComponent } from './shared/component/carrier/add-carrier/add-carrier.component';
-import { ListCarrierComponent } from './shared/component/carrier/list-carrier/list-carrier.component';
-import { UpdateCarriersComponent } from './shared/component/carrier/update-carriers/update-carriers.component';
+//import { AddCarrierComponent } from './shared/component/carrier/add-carrier/add-carrier.component';
+//import { ListCarrierComponent } from './shared/component/carrier/list-carrier/list-carrier.component';
+//import { UpdateCarriersComponent } from './shared/component/carrier/update-carriers/update-carriers.component';
 import { CrudCarrierComponent } from './shared/component/carrier/crud-carrier/crud-carrier.component';
+import { CrudCustomerComponent } from './shared/component/customer/crud-customer/crud-customer.component';
 
 
 
@@ -33,7 +34,9 @@ import { CrudCarrierComponent } from './shared/component/carrier/crud-carrier/cr
 import { CustomerService } from './shared/webservice/customer.service';
 import { DeliveryService } from './shared/webservice/delivery.service';
 import { CarrierService } from './shared/webservice/carrier.service';
+import { AddressService } from './shared/webservice/address.service';
 import { from } from 'rxjs';
+import { CrudAddressComponent } from './shared/component/address/crud-address/crud-address.component';
 
 @NgModule({
   declarations: [
@@ -41,10 +44,9 @@ import { from } from 'rxjs';
     NavbarComponent,
     DeliveryFormComponent,
     AllCustomerComponent,
-    AddCarrierComponent,
-    ListCarrierComponent,
-    UpdateCarriersComponent,
-    CrudCarrierComponent
+    CrudCarrierComponent,
+    CrudCustomerComponent,
+    CrudAddressComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,8 @@ import { from } from 'rxjs';
   providers: [
     CustomerService,
     DeliveryService,
-    CarrierService
+    CarrierService,
+    AddressService
   ],
   bootstrap: [AppComponent]
 })

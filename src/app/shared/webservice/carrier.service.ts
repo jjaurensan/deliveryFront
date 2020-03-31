@@ -4,9 +4,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 
 import { catchError } from 'rxjs-compat/operators/catchError';
 import { Observable } from 'rxjs-compat';
-import { Carrier } from '../class/carrier';
+import { Carrier} from '../interface/carrier';
 import { throwError } from 'rxjs';
-import { RecursiveTemplateAstVisitor } from '@angular/compiler';
 
 const httpOptions = {
   headers: new HttpHeaders({

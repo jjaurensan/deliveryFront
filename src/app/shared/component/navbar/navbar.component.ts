@@ -24,24 +24,9 @@ export class NavbarComponent implements OnInit {
           { label: 'Supprimer', icon: 'pi pi-trash' }
         ]
       },
-      {
-        label: 'Client', icon: 'pi pi-user',
-        items: [
-          { label: 'Ajouter', icon: 'pi pi-user-plus' },
-          { label: 'Consulter', icon: 'pi pi-users', routerLink: ['/customers'] },
-          { label: 'Modifier', icon: 'pi pi-user-edit' },
-          { label: 'Supprimer', icon: 'pi pi-user-minus' }
-        ]
-      },
-      {
-        label: 'Livreur', icon: 'pi pi-shopping-cart',
-        items: [
-          { label: 'Ajouter', icon: 'pi pi-plus-circle', routerLink: ['/carrier'] },
-          { label: 'Consulter', icon: 'pi pi-search' , routerLink: ['/list-carrier']},
-          { label: 'Modifier', icon: 'pi pi-pencil' , routerLink: ['/update-carrier']},
-          { label: 'Supprimer', icon: 'pi pi-trash', routerLink:['/crud-carrier'] }
-        ]
-      }
+      { label: 'Client', icon: 'pi pi-user', routerLink: ['/crud-customer'] },
+      { label: 'Addresse', icon: 'pi pi-id-card', routerLink: ['/crud-address'] },
+      { label: 'Livreur', icon: 'pi pi-shopping-cart', routerLink: ['/crud-carrier'] }
     ];
   }
 

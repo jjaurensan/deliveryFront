@@ -1,24 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
-import { AllCustomerComponent } from './shared/component/all.customer/all.customer.component';
-import { AddCarrierComponent } from './shared/component/carrier/add-carrier/add-carrier.component';
 import { DeliveryFormComponent } from './shared/component/delivery-form/delivery-form.component';
-import { ListCarrierComponent } from './shared/component/carrier/list-carrier/list-carrier.component';
-import { UpdateCarriersComponent } from './shared/component/carrier/update-carriers/update-carriers.component';
 import { CrudCarrierComponent } from './shared/component/carrier/crud-carrier/crud-carrier.component';
+import { CrudCustomerComponent } from './shared/component/customer/crud-customer/crud-customer.component';
+import { CrudAddressComponent } from './shared/component/address/crud-address/crud-address.component';
 
 const routes: Routes = [
-  { path: 'customers', component: AllCustomerComponent },
 
   { path: 'delivery-form', component: DeliveryFormComponent },
 
-  { path: 'carrier', component: AddCarrierComponent },
-  { path: 'list-carrier', component: ListCarrierComponent },
-  { path: 'update-carrier', component: UpdateCarriersComponent },
+  // { path: 'carrier', component: AddCarrierComponent },
+  // { path: 'list-carrier', component: ListCarrierComponent },
+  // { path: 'update-carrier', component: UpdateCarriersComponent },
   { path: 'crud-carrier', component: CrudCarrierComponent },
+  { path: 'crud-address', component: CrudAddressComponent },
+  { path: 'crud-customer', component: CrudCustomerComponent },
 
-  { path: '**', redirectTo: 'customers' }
+  { path: '**', redirectTo: 'crud-customer' }
 ];
 
 @NgModule({

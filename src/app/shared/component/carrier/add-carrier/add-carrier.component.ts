@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarrierService } from '../../../webservice/carrier.service';
-import { Carrier } from '../../../class/carrier';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { Carrier } from 'src/app/shared/class/carrier';
 @Component({
   selector: 'app-add-carrier',
   templateUrl: './add-carrier.component.html',

@@ -1,5 +1,6 @@
+
 export class Address {
-    public idAddress: number;
+ /*   public idAddress: number;
     public streetOne: String;
     public streetTwo: String;
     public streetThree: String;
@@ -23,5 +24,5 @@ export class Address {
         this.zipCode = zipCodeParam;
         this.city = cityParam;
         this.floor = floorParam;
-    }
+    }*/
 }

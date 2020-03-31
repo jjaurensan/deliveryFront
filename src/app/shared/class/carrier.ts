@@ -1,4 +1,7 @@
-export class Carrier {
+
+export class Carrier  {
+  
+    
     public idCarrier?: number;
     public name?: String;
     public streetOne?: String;

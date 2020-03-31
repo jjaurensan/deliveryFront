@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Carrier } from 'src/app/shared/class/carrier';
 import { CarrierService } from 'src/app/shared/webservice/carrier.service';
+import { Carrier } from 'src/app/shared/interface/carrier';
 
 @Component({
   selector: 'app-crud-carrier',
