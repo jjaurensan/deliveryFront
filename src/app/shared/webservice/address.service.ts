@@ -18,6 +18,7 @@ const httpOptions = {
 })
 export class AddressService {
 
+
   baseUrl = 'http://localhost:8080/';
 
   constructor(private http: HttpClient) { }
@@ -36,6 +37,25 @@ export class AddressService {
   }
   addCustomer(address: Address): Observable<Address> {
     return this.http.post<Address>(this.baseUrl + 'address/', JSON.stringify(address), httpOptions)
+      .pipe(
+        catchError((error) => this.handleError(error))
+      );
+  }
+
+  deleteAddress(address: Address) {
+    return this.http.delete<Address>(this.baseUrl + 'address/' + address.idAddress, httpOptions)
+      .pipe(
+        catchError((error) => this.handleError(error))
+      );
+  }
+  updateAddress(address: Address) {
+    return this.http.put<Address>(this.baseUrl + 'address/' + address.idAddress, JSON.stringify(address), httpOptions)
+      .pipe(
+        catchError((error) => this.handleError(error))
+      );
+  }
+  addAddress(address: Address) {
+    return this.http.post<Address>(this.baseUrl + 'carrier/', JSON.stringify(address), httpOptions)
       .pipe(
         catchError((error) => this.handleError(error))
       );
