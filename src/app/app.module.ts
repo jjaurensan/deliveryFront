@@ -24,7 +24,7 @@ import { AppRoutingModule } from './app-routing.module';
 /****** COMPONENTS *******/
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/component/navbar/navbar.component';
-import { DeliveryFormComponent } from './shared/component/delivery-form/delivery-form.component';
+//import { DeliveryFormComponent } from './shared/component/delivery-form/delivery-form.component';
 //import { AllCustomerComponent } from './shared/component/all.customer/all.customer.component';
 
 import { CrudCarrierComponent } from './shared/component/carrier/crud-carrier/crud-carrier.component';
@@ -45,7 +45,7 @@ import { from } from 'rxjs';
   declarations: [
     AppComponent,
     NavbarComponent,
-    DeliveryFormComponent,
+   // DeliveryFormComponent,
     //AllCustomerComponent,
     CrudCarrierComponent,
     CrudCustomerComponent,

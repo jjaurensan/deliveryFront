@@ -35,18 +35,21 @@
                 <label for="createDateDelivery">Date Crea</label>
             </div>
             <div class="ui-g-8">
-                <p-calendar [(ngModel)]="delivery.createDateDelivery" [inline]="true"></p-calendar>
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="carrier">Livreur</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="carrier" [(ngModel)]="delivery.carrier" />
+                <p-calendar [(ngModel)]="delivery.createDateDelivery" [inline]="false"></p-calendar>
             </div>
         </div>
 
+        <!-- CARRIER SELECT -->
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="carriers">Livreur</label>
+            </div>
+            <div class="ui-g-8">
+                <p-dropdown [options]="carriers" [(ngModel)]="delivery.carrier" optionLabel="name" [showClear]="true">
+                </p-dropdown>
+            </div>
+        </div>
+        <!-- END CARRIER SELECT -->
 
         <!-- CUSTOMER SELECT  -->
         <div class="ui-g-12">
@@ -54,24 +57,12 @@
                 <label for="customer">Client</label>
             </div>
             <div class="ui-g-8">
-                <input pInputText id="customer" [(ngModel)]="delivery.customer" />
+                <p-dropdown [options]="customers" [(ngModel)]="delivery.customer" optionLabel="customerNumber"
+            [showClear]="true" filter="true"></p-dropdown>
             </div>
         </div>
-
-        <h3>Content with Filters</h3>
-        <p-dropdown [options]="customers" [(ngModel)]="delivery.customer" filter="true">
-            <ng-template let-item pTemplate="selectedItem">
-                {{item.customerNumber}}
-            </ng-template>
-            <ng-template let-customer pTemplate="item">
-               {{custom.customerNumber}}
-            </ng-template>
-        </p-dropdown>
-        <p>Selected customer: {{delivery.customer || 'none'}}</p>
-
-
-
         <!-- END CUSTOMER SELECT -->
+
         <div class="ui-g-12">
             <div class="ui-g-4">
                 <label for="numberOfPackage">Nb Colis</label>

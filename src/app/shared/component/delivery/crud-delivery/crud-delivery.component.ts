@@ -3,7 +3,10 @@ import { DeliveryService } from 'src/app/shared/webservice/delivery.service';
 import { Delivery } from 'src/app/shared/interface/delivery';
 import { Customer } from 'src/app/shared/interface/customer';
 import { CustomerService } from 'src/app/shared/webservice/customer.service';
+
 import { SelectItem } from 'primeng/api/selectitem';
+import { Carrier } from 'src/app/shared/interface/carrier';
+import { CarrierService } from 'src/app/shared/webservice/carrier.service';
 
 @Component({
   selector: 'app-crud-delivery',
@@ -19,16 +22,19 @@ export class CrudDeliveryComponent implements OnInit {
   allDelivery: Delivery[];
   cols: any;
 
-  customers: SelectItem[];
+  //customers: SelectItem[];
+  carriers: Carrier[];
+  customers: Customer[];
 
 
-  constructor(private deliveryService: DeliveryService, private customerService: CustomerService) { }
+  // tslint:disable-next-line: max-line-length
+  constructor(private deliveryService: DeliveryService, private customerService: CustomerService, private carrierService: CarrierService) { }
 
   ngOnInit() {
 
     this.getAllDelivery();
     this.getAllCustomer();
-
+    this.getAllCarrier();
     this.cols = [
       { field: 'idDelivery', header: 'Id Delivery' },
       { field: 'createDateDelivery', header: 'Date Crea' },
@@ -40,15 +46,27 @@ export class CrudDeliveryComponent implements OnInit {
   getAllCustomer() {
     this.customerService.getAllCustomers().subscribe(
       (reponse) => {
-        reponse.forEach(element => {
-          this.customers.push({ label: element.customerNumber, value: element });
-        });
+        this.customers = reponse;
+        // reponse.forEach(element => {
+        //   this.customers.push({ label: element.customerNumber, value: element });
+        // });
       },
       (error) => {
-        console.error(error)
+        console.error(error);
       }
     );
   }
+  getAllCarrier() {
+    this.carrierService.getAllCarriers().subscribe(
+      (reponse) => {
+        this.carriers = reponse;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
 
   getAllDelivery() {
     this.deliveryService.getAllDelivery().subscribe(
