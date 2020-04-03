@@ -1,7 +1,8 @@
-<p-table [columns]="cols" [value]="allAddress" selectionMode="single" [(selection)]="selectedAddress"
+<p>crud-delivery works!</p>
+<p-table [columns]="cols" [value]="allDelivery" selectionMode="single" [(selection)]="selectedDelivery"
     (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
     <ng-template pTemplate="caption">
-        List of Address
+        List of Delivery
     </ng-template>
     <ng-template pTemplate="header" let-columns>
         <tr>
@@ -13,12 +14,8 @@
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr [pSelectableRow]="rowData">
-            <td *ngFor="let col of columns">               
-
-                {{col.field==='floor' ? '':rowData[col.field]}}
-
-                <p-checkbox name="floor" *ngIf="col.field==='floor'" [(ngModel)]="rowData[col.field]"
-                    binary="true"></p-checkbox>
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
             </td>
         </tr>
     </ng-template>
@@ -29,58 +26,61 @@
     </ng-template>
 </p-table>
 
-<p-dialog header="Address Details" [(visible)]="displayDialog" [focusOnShow]="false" showEffect="fade" [modal]="true"
-    [style]="{width: '500px'}">
-    <div class="ui-g ui-fluid" *ngIf="address">
+<p-dialog header="Delivery Details" [(visible)]="displayDialog" [focusOnShow]="false" showEffect="fade" [modal]="true"
+    [style]="{width: '550px'}">
+    <div class="ui-g ui-fluid" *ngIf="delivery">
 
         <div class="ui-g-12">
             <div class="ui-g-4">
-                <label for="streetOne">Rue 1</label>
+                <label for="createDateDelivery">Date Crea</label>
             </div>
             <div class="ui-g-8">
-                <input pInputText id="streetOne" [(ngModel)]="address.streetOne" />
+                <p-calendar [(ngModel)]="delivery.createDateDelivery" [inline]="true"></p-calendar>
             </div>
         </div>
         <div class="ui-g-12">
             <div class="ui-g-4">
-                <label for="streetTwo">Rue 2</label>
+                <label for="carrier">Livreur</label>
             </div>
             <div class="ui-g-8">
-                <input pInputText id="streetTwo" [(ngModel)]="address.streetTwo" />
+                <input pInputText id="carrier" [(ngModel)]="delivery.carrier" />
             </div>
         </div>
+
+
+        <!-- CUSTOMER SELECT  -->
         <div class="ui-g-12">
             <div class="ui-g-4">
-                <label for="streetTwo">Rue 3</label>
+                <label for="customer">Client</label>
             </div>
             <div class="ui-g-8">
-                <input pInputText id="streetThree" [(ngModel)]="address.streetThree" />
+                <input pInputText id="customer" [(ngModel)]="delivery.customer" />
             </div>
         </div>
+
+        <h3>Content with Filters</h3>
+        <p-dropdown [options]="customers" [(ngModel)]="delivery.customer" filter="true">
+            <ng-template let-item pTemplate="selectedItem">
+                {{item.customerNumber}}
+            </ng-template>
+            <ng-template let-customer pTemplate="item">
+               {{custom.customerNumber}}
+            </ng-template>
+        </p-dropdown>
+        <p>Selected customer: {{delivery.customer || 'none'}}</p>
+
+
+
+        <!-- END CUSTOMER SELECT -->
         <div class="ui-g-12">
             <div class="ui-g-4">
-                <label for="zipCode">Code Postale</label>
+                <label for="numberOfPackage">Nb Colis</label>
             </div>
             <div class="ui-g-8">
-                <input pInputText id="zipCode" [(ngModel)]="address.zipCode" />
+                <p-spinner id="numberOfPackage" [(ngModel)]="delivery.numberOfPackage" [min]="1"></p-spinner>
             </div>
         </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="city">Ville</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="city" [(ngModel)]="address.city" />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="floor">Etage</label>
-            </div>
-            <div class="ui-g-8">
-                <p-checkbox name="floor" id="floor" [(ngModel)]="address.floor" binary="true"></p-checkbox>
-            </div>
-        </div>
+
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">

@@ -1,0 +1,107 @@
+import { Component, OnInit } from '@angular/core';
+import { DeliveryService } from 'src/app/shared/webservice/delivery.service';
+import { Delivery } from 'src/app/shared/interface/delivery';
+import { Customer } from 'src/app/shared/interface/customer';
+import { CustomerService } from 'src/app/shared/webservice/customer.service';
+import { SelectItem } from 'primeng/api/selectitem';
+
+@Component({
+  selector: 'app-crud-delivery',
+  templateUrl: './crud-delivery.component.html',
+  styleUrls: ['./crud-delivery.component.scss']
+})
+export class CrudDeliveryComponent implements OnInit {
+
+  displayDialog: boolean;
+  delivery: Delivery;
+  selectedDelivery: Delivery;
+  isNewDelivery: boolean;
+  allDelivery: Delivery[];
+  cols: any;
+
+  customers: SelectItem[];
+
+
+  constructor(private deliveryService: DeliveryService, private customerService: CustomerService) { }
+
+  ngOnInit() {
+
+    this.getAllDelivery();
+    this.getAllCustomer();
+
+    this.cols = [
+      { field: 'idDelivery', header: 'Id Delivery' },
+      { field: 'createDateDelivery', header: 'Date Crea' },
+      { field: 'carrier', header: 'Livreur' },
+      { field: 'customer', header: 'Client' },
+      { field: 'numberOfPackage', header: 'Nb Colis' }
+    ];
+  }
+  getAllCustomer() {
+    this.customerService.getAllCustomers().subscribe(
+      (reponse) => {
+        reponse.forEach(element => {
+          this.customers.push({ label: element.customerNumber, value: element });
+        });
+      },
+      (error) => {
+        console.error(error)
+      }
+    );
+  }
+
+  getAllDelivery() {
+    this.deliveryService.getAllDelivery().subscribe(
+      (reponse) => {
+        this.allDelivery = reponse;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  showDialogToAdd() {
+    this.isNewDelivery = true;
+    this.delivery = {};
+    this.displayDialog = true;
+  }
+  save() {
+    const allDelivery = [...this.allDelivery];
+    if (this.isNewDelivery) {
+      allDelivery.push(this.delivery);
+      this.deliveryService.addDelivery(this.delivery).subscribe();
+    } else {
+      allDelivery[this.allDelivery.indexOf(this.selectedDelivery)] = this.delivery;
+      this.deliveryService.updateDelivery(this.delivery).subscribe();
+    }
+
+    this.allDelivery = allDelivery;
+    this.delivery = null;
+    this.displayDialog = false;
+  }
+
+  delete() {
+    const index = this.allDelivery.indexOf(this.selectedDelivery);
+    this.deliveryService.deleteDelivery(this.delivery.idDelivery).subscribe();
+    this.allDelivery = this.allDelivery.filter((val, i) => i !== index);
+    this.delivery = null;
+    this.displayDialog = false;
+  }
+
+  onRowSelect(event) {
+    this.isNewDelivery = false;
+    this.delivery = this.cloneDelivery(event.data);
+    this.displayDialog = true;
+  }
+  cloneDelivery(d: Delivery): Delivery {
+    const delivery = {};
+    // tslint:disable-next-line: forin
+    for (const prop in d) {
+      delivery[prop] = d[prop];
+    }
+    return delivery;
+  }
+
+  //end
+}

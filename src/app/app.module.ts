@@ -14,6 +14,10 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { MenubarModule } from 'primeng/menubar';
 import { PanelModule } from 'primeng/panel';
 import { DialogModule } from 'primeng/dialog';
+import { CalendarModule } from 'primeng/calendar';
+import { SpinnerModule } from 'primeng/spinner';
+import { DropdownModule } from 'primeng/dropdown';
+
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -21,12 +25,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/component/navbar/navbar.component';
 import { DeliveryFormComponent } from './shared/component/delivery-form/delivery-form.component';
-import { AllCustomerComponent } from './shared/component/all.customer/all.customer.component';
-//import { AddCarrierComponent } from './shared/component/carrier/add-carrier/add-carrier.component';
-//import { ListCarrierComponent } from './shared/component/carrier/list-carrier/list-carrier.component';
-//import { UpdateCarriersComponent } from './shared/component/carrier/update-carriers/update-carriers.component';
+//import { AllCustomerComponent } from './shared/component/all.customer/all.customer.component';
+
 import { CrudCarrierComponent } from './shared/component/carrier/crud-carrier/crud-carrier.component';
 import { CrudCustomerComponent } from './shared/component/customer/crud-customer/crud-customer.component';
+import { CrudAddressComponent } from './shared/component/address/crud-address/crud-address.component';
+import { CrudDeliveryComponent } from './shared/component/delivery/crud-delivery/crud-delivery.component';
 
 
 
@@ -36,17 +40,17 @@ import { DeliveryService } from './shared/webservice/delivery.service';
 import { CarrierService } from './shared/webservice/carrier.service';
 import { AddressService } from './shared/webservice/address.service';
 import { from } from 'rxjs';
-import { CrudAddressComponent } from './shared/component/address/crud-address/crud-address.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     DeliveryFormComponent,
-    AllCustomerComponent,
+    //AllCustomerComponent,
     CrudCarrierComponent,
     CrudCustomerComponent,
-    CrudAddressComponent
+    CrudAddressComponent,
+    CrudDeliveryComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,11 @@ import { CrudAddressComponent } from './shared/component/address/crud-address/cr
     MenubarModule,
     PanelModule,
     ReactiveFormsModule,
-    DialogModule
+    DialogModule,
+    CalendarModule,
+    SpinnerModule,
+    DropdownModule,
+    
   ],
   providers: [
     CustomerService,
