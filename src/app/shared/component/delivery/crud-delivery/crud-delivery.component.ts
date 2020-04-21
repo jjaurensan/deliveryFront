@@ -7,6 +7,7 @@ import { CustomerService } from 'src/app/shared/webservice/customer.service';
 import { SelectItem } from 'primeng/api/selectitem';
 import { Carrier } from 'src/app/shared/interface/carrier';
 import { CarrierService } from 'src/app/shared/webservice/carrier.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-crud-delivery',
@@ -47,9 +48,6 @@ export class CrudDeliveryComponent implements OnInit {
     this.customerService.getAllCustomers().subscribe(
       (reponse) => {
         this.customers = reponse;
-        // reponse.forEach(element => {
-        //   this.customers.push({ label: element.customerNumber, value: element });
-        // });
       },
       (error) => {
         console.error(error);
@@ -87,8 +85,15 @@ export class CrudDeliveryComponent implements OnInit {
   save() {
     const allDelivery = [...this.allDelivery];
     if (this.isNewDelivery) {
-      allDelivery.push(this.delivery);
-      this.deliveryService.addDelivery(this.delivery).subscribe();
+      console.log(this.delivery);
+      this.deliveryService.addDelivery(this.delivery).subscribe(
+        (reponse) => {
+          this.delivery = reponse;
+          allDelivery.push(this.delivery);
+        }, (error) => {
+          console.error(error);
+        }
+      );
     } else {
       allDelivery[this.allDelivery.indexOf(this.selectedDelivery)] = this.delivery;
       this.deliveryService.updateDelivery(this.delivery).subscribe();
@@ -120,6 +125,4 @@ export class CrudDeliveryComponent implements OnInit {
     }
     return delivery;
   }
-
-  //end
 }

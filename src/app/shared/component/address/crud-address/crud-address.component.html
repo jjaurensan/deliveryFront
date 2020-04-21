@@ -18,7 +18,7 @@
                 {{col.field==='floor' ? '':rowData[col.field]}}
 
                 <p-checkbox name="floor" *ngIf="col.field==='floor'" [(ngModel)]="rowData[col.field]"
-                    binary="true"></p-checkbox>
+                    binary="true" readonly="true" ></p-checkbox>
             </td>
         </tr>
     </ng-template>
