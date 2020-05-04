@@ -11,6 +11,8 @@
             <th>Livreur</th>
             <th>Client</th>
             <th>Nb Colis</th>
+            <th>Poids</th>
+            <th>Montant</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-delivery>
@@ -20,7 +22,8 @@
             <td>{{delivery.carrier?.name}}</td>
             <td>{{delivery.customer?.customerNumber}}</td>
             <td>{{delivery.numberOfPackage}}</td>
-
+            <td>{{delivery.weight}}</td>
+            <td>{{delivery.price}}</td>
         </tr>
     </ng-template>
     <ng-template pTemplate="summary" let-delivery>
@@ -74,6 +77,14 @@
             </div>
             <div class="ui-g-8">
                 <p-spinner id="numberOfPackage" [(ngModel)]="delivery.numberOfPackage" [min]="1"></p-spinner>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="weight">Poids</label>
+            </div>
+            <div class="ui-g-8">
+                <p-spinner id="weight" [(ngModel)]="delivery.weight" decimalSeparator="." [step]="0.25" precision="2" [formatInput]="true" ></p-spinner>
             </div>
         </div>
 

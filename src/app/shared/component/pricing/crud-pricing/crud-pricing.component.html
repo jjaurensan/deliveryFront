@@ -1,0 +1,87 @@
+<p-table [columns]="cols" [value]="pricings" selectionMode="single" [(selection)]="selectPricing"
+    (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
+    <ng-template pTemplate="caption">
+        Liste des tarifs livraison
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+       
+        <tr >
+            <th >Livreur</th>
+            <th>Px Rangement</th>
+            <th>Px Etage</th>
+            <th>Liste Prix</th>
+        </tr>
+
+    </ng-template>
+    <ng-template pTemplate="body" let-pricing>
+        <tr [pSelectableRow]="pricing">
+            <td>{{pricing.carrier?.name}}</td>
+            <td>{{pricing.arragement}}</td>
+            <td>{{pricing.floor}}</td>
+            <td>{{pricing.listPrice?.length}}</td>
+        </tr>
+    </ng-template>
+   
+    <ng-template pTemplate="summary" let-rowData>
+        <div style="text-align:left">
+            <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Ajouter"></button>
+        </div>
+    </ng-template>
+</p-table>
+
+<p-dialog header="pricing Details" [(visible)]="displayDialog" [focusOnShow]="false" showEffect="fade" [modal]="true"
+    [style]="{width: '600px'}">
+    <div class="ui-g ui-fluid" *ngIf="pricing">
+        
+         <!-- CARRIER SELECT -->
+         <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="carrier">Livreur</label>
+            </div>
+            <div class="ui-g-8">
+                <p-dropdown [options]="carriers" [(ngModel)]="pricing.carrier" optionLabel="name" [showClear]="true"
+                    placeholder="Livreur"></p-dropdown>
+            </div>
+        </div>
+        <!-- END CARRIER SELECT -->
+
+        <div class="ui-g-12">
+            <app-crud-price [prices]="pricing.listPrice" (addPrice)="addPrice($event)" ></app-crud-price>
+        </div>
+
+        <!-- <div class="ui-g-12" *ngIf="!isNewPricing">
+            <div class="ui-g-4">
+                <label for="listPrice">Liste des prix</label>
+            </div>
+            <div class="ui-g-8" *ngFor="let price of pricing.listPrice">
+
+                <input pInputText id="Price_amount" [(ngModel)]="price.amount" />
+                <input pInputText id="Price_minWeightValue" [(ngModel)]="price.minWeightValue" />
+                <input pInputText id="Price_maxWeightValue" [(ngModel)]="price.maxWeightValue" />
+
+            </div> 
+        </div>-->
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="arragement">Rangement</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="arragement" [(ngModel)]="pricing.arragement" />
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="floor">Etage</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="floor" [(ngModel)]="pricing.floor" />
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="pi pi-times" (click)="delete()" label="Delete"></button>
+            <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>

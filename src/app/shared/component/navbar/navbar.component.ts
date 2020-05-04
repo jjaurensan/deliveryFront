@@ -18,7 +18,8 @@ export class NavbarComponent implements OnInit {
       { label: 'Livraison', icon: 'pi pi-shopping-cart', routerLink: ['/crud-delivery'] },
       { label: 'Client', icon: 'pi pi-user', routerLink: ['/crud-customer'] },
       { label: 'Addresse', icon: 'pi pi-id-card', routerLink: ['/crud-address'] },
-      { label: 'Livreur', icon: 'pi pi-shopping-cart', routerLink: ['/crud-carrier'] }
+      { label: 'Livreur', icon: 'pi pi-shopping-cart', routerLink: ['/crud-carrier'] },
+      { label: 'Prix', icon: 'pi pi-money-bill ', routerLink: ['/crud-pricing'] }
     ];
   }
 

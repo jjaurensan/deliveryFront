@@ -39,18 +39,24 @@ import { CustomerService } from './shared/webservice/customer.service';
 import { DeliveryService } from './shared/webservice/delivery.service';
 import { CarrierService } from './shared/webservice/carrier.service';
 import { AddressService } from './shared/webservice/address.service';
-import { from } from 'rxjs';
+import { PricingService } from './shared/webservice/pricing.service';
+import { PriceService } from './shared/webservice/price.service';
+
+import { CrudPricingComponent } from './shared/component/pricing/crud-pricing/crud-pricing.component';
+import { CrudPriceComponent } from './shared/component/pricing/crud-price/crud-price.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-   // DeliveryFormComponent,
+    // DeliveryFormComponent,
     //AllCustomerComponent,
     CrudCarrierComponent,
     CrudCustomerComponent,
     CrudAddressComponent,
-    CrudDeliveryComponent
+    CrudDeliveryComponent,
+    CrudPricingComponent,
+    CrudPriceComponent
   ],
   imports: [
     BrowserModule,
@@ -71,13 +77,15 @@ import { from } from 'rxjs';
     CalendarModule,
     SpinnerModule,
     DropdownModule,
-    
+
   ],
   providers: [
     CustomerService,
     DeliveryService,
     CarrierService,
-    AddressService
+    AddressService,
+    PricingService,
+    PriceService
   ],
   bootstrap: [AppComponent]
 })

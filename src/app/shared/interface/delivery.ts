@@ -7,4 +7,6 @@ export interface Delivery {
     carrier?: Carrier;
     customer?: Customer;
     numberOfPackage?: number;
+    weight?: number;
+    price?: number;
 }

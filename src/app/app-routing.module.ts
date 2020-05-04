@@ -4,6 +4,7 @@ import { CrudCarrierComponent } from './shared/component/carrier/crud-carrier/cr
 import { CrudCustomerComponent } from './shared/component/customer/crud-customer/crud-customer.component';
 import { CrudAddressComponent } from './shared/component/address/crud-address/crud-address.component';
 import { CrudDeliveryComponent } from './shared/component/delivery/crud-delivery/crud-delivery.component';
+import { CrudPricingComponent } from './shared/component/pricing/crud-pricing/crud-pricing.component';
 
 const routes: Routes = [
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'crud-address', component: CrudAddressComponent },
   { path: 'crud-customer', component: CrudCustomerComponent },
   { path: 'crud-delivery', component: CrudDeliveryComponent },
+  { path: 'crud-pricing', component: CrudPricingComponent },
   { path: '**', redirectTo: 'crud-customer' }
 ];
 

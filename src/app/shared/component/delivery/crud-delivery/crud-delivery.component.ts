@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { DeliveryService } from 'src/app/shared/webservice/delivery.service';
-import { Delivery } from 'src/app/shared/interface/delivery';
-import { Customer } from 'src/app/shared/interface/customer';
-import { CustomerService } from 'src/app/shared/webservice/customer.service';
-
-import { SelectItem } from 'primeng/api/selectitem';
 import { Carrier } from 'src/app/shared/interface/carrier';
+import { Customer } from 'src/app/shared/interface/customer';
+import { Delivery } from 'src/app/shared/interface/delivery';
 import { CarrierService } from 'src/app/shared/webservice/carrier.service';
-import { Observable } from 'rxjs';
+import { CustomerService } from 'src/app/shared/webservice/customer.service';
+import { DeliveryService } from 'src/app/shared/webservice/delivery.service';
+
 
 @Component({
   selector: 'app-crud-delivery',
@@ -23,7 +21,6 @@ export class CrudDeliveryComponent implements OnInit {
   allDelivery: Delivery[];
   cols: any;
 
-  //customers: SelectItem[];
   carriers: Carrier[];
   customers: Customer[];
 
@@ -41,7 +38,8 @@ export class CrudDeliveryComponent implements OnInit {
       { field: 'createDateDelivery', header: 'Date Crea' },
       { field: 'carrier', header: 'Livreur' },
       { field: 'customer', header: 'Client' },
-      { field: 'numberOfPackage', header: 'Nb Colis' }
+      { field: 'numberOfPackage', header: 'Nb Colis' },
+      { field: 'price', header: 'Montant' }
     ];
   }
   getAllCustomer() {
