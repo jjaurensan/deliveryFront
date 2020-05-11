@@ -5,6 +5,7 @@ import { CrudCustomerComponent } from './shared/component/customer/crud-customer
 import { CrudAddressComponent } from './shared/component/address/crud-address/crud-address.component';
 import { CrudDeliveryComponent } from './shared/component/delivery/crud-delivery/crud-delivery.component';
 import { CrudPricingComponent } from './shared/component/pricing/crud-pricing/crud-pricing.component';
+import { StatComponent } from './shared/component/stat/stat.component';
 
 const routes: Routes = [
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'crud-customer', component: CrudCustomerComponent },
   { path: 'crud-delivery', component: CrudDeliveryComponent },
   { path: 'crud-pricing', component: CrudPricingComponent },
+  { path: 'stat', component: StatComponent },
   { path: '**', redirectTo: 'crud-customer' }
 ];
 

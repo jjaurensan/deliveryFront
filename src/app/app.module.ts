@@ -17,7 +17,7 @@ import { DialogModule } from 'primeng/dialog';
 import { CalendarModule } from 'primeng/calendar';
 import { SpinnerModule } from 'primeng/spinner';
 import { DropdownModule } from 'primeng/dropdown';
-
+import {ChartModule} from 'primeng/chart';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -31,7 +31,9 @@ import { CrudCarrierComponent } from './shared/component/carrier/crud-carrier/cr
 import { CrudCustomerComponent } from './shared/component/customer/crud-customer/crud-customer.component';
 import { CrudAddressComponent } from './shared/component/address/crud-address/crud-address.component';
 import { CrudDeliveryComponent } from './shared/component/delivery/crud-delivery/crud-delivery.component';
-
+import { CrudPricingComponent } from './shared/component/pricing/crud-pricing/crud-pricing.component';
+import { CrudPriceComponent } from './shared/component/pricing/crud-price/crud-price.component';
+import { StatComponent } from './shared/component/stat/stat.component';
 
 
 /***SERVICE*******/
@@ -41,9 +43,8 @@ import { CarrierService } from './shared/webservice/carrier.service';
 import { AddressService } from './shared/webservice/address.service';
 import { PricingService } from './shared/webservice/pricing.service';
 import { PriceService } from './shared/webservice/price.service';
+import { StatService } from './shared/webservice/stat.service';
 
-import { CrudPricingComponent } from './shared/component/pricing/crud-pricing/crud-pricing.component';
-import { CrudPriceComponent } from './shared/component/pricing/crud-price/crud-price.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { CrudPriceComponent } from './shared/component/pricing/crud-price/crud-p
     CrudAddressComponent,
     CrudDeliveryComponent,
     CrudPricingComponent,
-    CrudPriceComponent
+    CrudPriceComponent,
+    StatComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +79,7 @@ import { CrudPriceComponent } from './shared/component/pricing/crud-price/crud-p
     CalendarModule,
     SpinnerModule,
     DropdownModule,
-
+    ChartModule
   ],
   providers: [
     CustomerService,
@@ -85,7 +87,8 @@ import { CrudPriceComponent } from './shared/component/pricing/crud-price/crud-p
     CarrierService,
     AddressService,
     PricingService,
-    PriceService
+    PriceService,
+    StatService
   ],
   bootstrap: [AppComponent]
 })
