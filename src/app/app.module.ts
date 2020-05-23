@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 //import { RouterModule } from '@angular/router';
 
 import { InputTextModule } from 'primeng/inputtext';
@@ -88,7 +88,8 @@ import { StatService } from './shared/webservice/stat.service';
     AddressService,
     PricingService,
     PriceService,
-    StatService
+    StatService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

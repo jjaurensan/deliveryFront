@@ -5,6 +5,7 @@ import { Delivery } from 'src/app/shared/interface/delivery';
 import { CarrierService } from 'src/app/shared/webservice/carrier.service';
 import { CustomerService } from 'src/app/shared/webservice/customer.service';
 import { DeliveryService } from 'src/app/shared/webservice/delivery.service';
+import { formatDate, DatePipe } from '@angular/common';
 
 
 @Component({
@@ -21,12 +22,13 @@ export class CrudDeliveryComponent implements OnInit {
   allDelivery: Delivery[];
   cols: any;
 
+  dateCrea: Date;
   carriers: Carrier[];
   customers: Customer[];
 
 
   // tslint:disable-next-line: max-line-length
-  constructor(private deliveryService: DeliveryService, private customerService: CustomerService, private carrierService: CarrierService) { }
+  constructor(private deliveryService: DeliveryService, private customerService: CustomerService, private carrierService: CarrierService, private datePipe: DatePipe) { }
 
   ngOnInit() {
 
@@ -83,6 +85,8 @@ export class CrudDeliveryComponent implements OnInit {
   save() {
     const allDelivery = [...this.allDelivery];
     if (this.isNewDelivery) {
+      
+      this.delivery.address = this.delivery.customer.customerListDeliveryAddress[0];
       console.log(this.delivery);
       this.deliveryService.addDelivery(this.delivery).subscribe(
         (reponse) => {

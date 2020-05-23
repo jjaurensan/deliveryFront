@@ -6,6 +6,8 @@ import { catchError } from 'rxjs-compat/operators/catchError';
 import { Observable, } from 'rxjs-compat';
 import { throwError } from 'rxjs';
 import { Delivery } from '../interface/delivery';
+import { DatePipe } from '@angular/common';
+import { $ } from 'protractor';
 
 
 const httpOptions = {
@@ -20,7 +22,11 @@ export class DeliveryService {
 
   baseUrl = 'http://localhost:8080/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public datePipe: DatePipe) { }
+
+  transformDate(date) {
+    return this.datePipe.transform(date, 'yyyy-MM-dd');
+  }
 
   getDeliveryById(idDelivery: number): Observable<Delivery> {
     return this.http.get<Delivery>(this.baseUrl + 'delivery/' + idDelivery)
@@ -35,8 +41,20 @@ export class DeliveryService {
         catchError((error) => this.handleError(error))
       );
   }
+
+
   addDelivery(delivery: Delivery): Observable<Delivery> {
-    return this.http.post<Delivery>(this.baseUrl + 'delivery/', JSON.stringify(delivery), httpOptions)
+    const service = this;
+    function replacer(name: any, val: any) {
+      if (name === 'createDateDelivery') {
+        return service.transformDate(val);
+      } else {
+        return val;
+      }
+    }
+
+    console.log(JSON.stringify(delivery, replacer));
+    return this.http.post<Delivery>(this.baseUrl + 'delivery/', JSON.stringify(delivery, replacer), httpOptions)
       .pipe(
         catchError((error) => this.handleError(error))
       );
@@ -60,4 +78,6 @@ export class DeliveryService {
     console.log('DeliveryService error', error);
     return throwError('Something bad happened; please try again later.');
   }
+
+
 }
