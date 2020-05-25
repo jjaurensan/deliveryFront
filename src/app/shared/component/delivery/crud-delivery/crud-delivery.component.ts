@@ -85,9 +85,7 @@ export class CrudDeliveryComponent implements OnInit {
   save() {
     const allDelivery = [...this.allDelivery];
     if (this.isNewDelivery) {
-      
       this.delivery.address = this.delivery.customer.customerListDeliveryAddress[0];
-      console.log(this.delivery);
       this.deliveryService.addDelivery(this.delivery).subscribe(
         (reponse) => {
           this.delivery = reponse;

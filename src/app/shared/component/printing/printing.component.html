@@ -1,0 +1,7 @@
+<p>printing works!</p>
+
+<p-calendar [(ngModel)]="dateDeliveryPrinting" dateFormat="yy-mm-dd"></p-calendar>
+
+<p-dropdown [options]="carriers" [(ngModel)]="carrier" optionLabel="name" [showClear]="true"
+                    placeholder="Livreur"></p-dropdown>
+<p-button label="Click" (onClick)="printFileGeneration()"></p-button>

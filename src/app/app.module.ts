@@ -17,7 +17,7 @@ import { DialogModule } from 'primeng/dialog';
 import { CalendarModule } from 'primeng/calendar';
 import { SpinnerModule } from 'primeng/spinner';
 import { DropdownModule } from 'primeng/dropdown';
-import {ChartModule} from 'primeng/chart';
+import { ChartModule } from 'primeng/chart';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -34,6 +34,7 @@ import { CrudDeliveryComponent } from './shared/component/delivery/crud-delivery
 import { CrudPricingComponent } from './shared/component/pricing/crud-pricing/crud-pricing.component';
 import { CrudPriceComponent } from './shared/component/pricing/crud-price/crud-price.component';
 import { StatComponent } from './shared/component/stat/stat.component';
+import { PrintingComponent } from './shared/component/printing/printing.component';
 
 
 /***SERVICE*******/
@@ -44,7 +45,7 @@ import { AddressService } from './shared/webservice/address.service';
 import { PricingService } from './shared/webservice/pricing.service';
 import { PriceService } from './shared/webservice/price.service';
 import { StatService } from './shared/webservice/stat.service';
-
+import { PrintService } from './shared/webservice/print.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { StatService } from './shared/webservice/stat.service';
     CrudDeliveryComponent,
     CrudPricingComponent,
     CrudPriceComponent,
-    StatComponent
+    StatComponent,
+    PrintingComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +91,8 @@ import { StatService } from './shared/webservice/stat.service';
     PricingService,
     PriceService,
     StatService,
-    DatePipe
+    DatePipe,
+    PrintService
   ],
   bootstrap: [AppComponent]
 })
