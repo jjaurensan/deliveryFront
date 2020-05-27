@@ -18,6 +18,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { SpinnerModule } from 'primeng/spinner';
 import { DropdownModule } from 'primeng/dropdown';
 import { ChartModule } from 'primeng/chart';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -47,12 +48,13 @@ import { PriceService } from './shared/webservice/price.service';
 import { StatService } from './shared/webservice/stat.service';
 import { PrintService } from './shared/webservice/print.service';
 
+
+import { AddAdressFormCustomerComponent } from './shared/component/customer/add-adress-form-customer/add-adress-form-customer.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    // DeliveryFormComponent,
-    //AllCustomerComponent,
+    NavbarComponent,    
     CrudCarrierComponent,
     CrudCustomerComponent,
     CrudAddressComponent,
@@ -60,8 +62,13 @@ import { PrintService } from './shared/webservice/print.service';
     CrudPricingComponent,
     CrudPriceComponent,
     StatComponent,
-    PrintingComponent
+    PrintingComponent,
+    AddAdressFormCustomerComponent
   ],
+  entryComponents:[
+    AddAdressFormCustomerComponent
+  ]
+  ,
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -81,7 +88,8 @@ import { PrintService } from './shared/webservice/print.service';
     CalendarModule,
     SpinnerModule,
     DropdownModule,
-    ChartModule
+    ChartModule,
+    DynamicDialogModule
   ],
   providers: [
     CustomerService,

@@ -1,0 +1,23 @@
+<div class="ui-g-12">
+    <div class="ui-g-4">
+        <label for="newAddress">Address</label>
+    </div>
+    <div class="ui-g-8">
+        <input pInputText id="Address_streetOne" [(ngModel)]="newAddress.streetOne" placeholder="Rue 1"
+            required="true" />
+        <input pInputText id="Address_streetTwo" [(ngModel)]="newAddress.streetTwo" placeholder="Rue 2" />
+        <input pInputText id="Address_streetThree" [(ngModel)]="newAddress.streetThree" placeholder="Rue 3" />
+        <input pInputText id="Address_zipCode" [(ngModel)]="newAddress.zipCode" placeholder="Code Postale"
+            required="true" />
+        <input pInputText id="Address_city" [(ngModel)]="newAddress.city" placeholder="Ville" required="true" />
+    </div>
+</div>
+<div class="ui-g-12">
+    <div class="ui-g-4">
+        <label for="Address_floor">Etage</label>
+    </div>
+    <div class="ui-g-8">
+        <p-checkbox id="Address_floor" [(ngModel)]="newAddress.floor" binary="true"></p-checkbox>
+    </div>
+</div>
+<button pButton icon="pi pi-check" (click)="addCustomerAddress()"></button>

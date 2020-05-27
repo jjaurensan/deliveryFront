@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/shared/webservice/customer.service';
 import { Customer } from 'src/app/shared/interface/customer';
 import { Address } from 'src/app/shared/interface/address';
+import { DialogService } from 'primeng/dynamicdialog';
+import { DynamicDialogRef } from 'primeng/dynamicdialog/public_api';
+import { AddAdressFormCustomerComponent } from '../add-adress-form-customer/add-adress-form-customer.component';
 
 
 @Component({
   selector: 'app-crud-customer',
   templateUrl: './crud-customer.component.html',
-  styleUrls: ['./crud-customer.component.scss']
+  styleUrls: ['./crud-customer.component.scss'],
+  providers: [DialogService]
 })
 export class CrudCustomerComponent implements OnInit {
 
@@ -18,7 +22,10 @@ export class CrudCustomerComponent implements OnInit {
   customers: Customer[];
   cols: any;
   newAddress: Address;
-  constructor(private customerService: CustomerService) { }
+
+  ref: DynamicDialogRef;
+
+  constructor(private customerService: CustomerService, public dialogService: DialogService) { }
 
   ngOnInit() {
 
@@ -93,4 +100,22 @@ export class CrudCustomerComponent implements OnInit {
     }
     return customer;
   }
+  show() {
+    console.warn('test show()');
+    const ref = this.dialogService.open(
+      AddAdressFormCustomerComponent, {
+      header: 'Ajouter une adresse',
+      height: 'auto'
+
+    });
+
+    ref.onClose.subscribe((address: Address) => {
+      if (address) {
+        this.customer.customerListDeliveryAddress.push(address);
+      }
+    });
+
+
+  }
+  
 }

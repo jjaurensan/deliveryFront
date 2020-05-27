@@ -16,42 +16,13 @@ export class PrintingComponent implements OnInit {
   carriers: Carrier[];
   carrier: Carrier;
   pdfFile: File[];
+  displayBasic: boolean;
   constructor(private carrierService: CarrierService, private printService: PrintService) { }
 
   ngOnInit(): void {
 
     this.getAllCarrier();
   }
-  printFileGeneration() {
-    // this.printService.getPrintFile(this.carrier, this.dateDeliveryPrinting).subscribe(
-    //   (reponse) => {
-    //     this.pdfFile = reponse;
-    //   },
-    //   (error) => {
-    //     console.error(error);
-    //   }
-    // );
-    // console.log('Fichiers nombre : ' + this.pdfFile.length);
-    this.printService.getPDF(this.carrier, this.dateDeliveryPrinting)
-      .subscribe((data: Blob) => {
-        var file = new Blob([data], { type: 'application/pdf' })
-        var fileURL = URL.createObjectURL(file);
-
-        // if you want to open PDF in new tab
-        window.open(fileURL);
-        var a = document.createElement('a');
-        a.href = fileURL;
-        a.target = '_blank';
-        a.download = 'bill.pdf';
-        document.body.appendChild(a);
-        a.click();
-      },
-        (error) => {
-          console.log('getPDF error: ', error);
-        }
-      );
-  }
-
   getAllCarrier() {
     this.carrierService.getAllCarriers().subscribe(
       (reponse) => {
@@ -62,4 +33,31 @@ export class PrintingComponent implements OnInit {
       }
     );
   }
+  showBasicDialog() {
+    this.displayBasic = true;
+  }
+  printFileGeneration() {
+    if (this.carrier && this.dateDeliveryPrinting) {
+      this.printService.getPDF(this.carrier, this.dateDeliveryPrinting)
+        .subscribe((data: Blob) => {
+          const file = new Blob([data], { type: 'application/pdf' });
+          const fileURL = URL.createObjectURL(file);
+
+          // if you want to open PDF in new tab
+          window.open(fileURL);
+          const a = document.createElement('a');
+          a.href = fileURL;
+          a.target = '_blank';
+          a.download = this.dateDeliveryPrinting + '_' + this.carrier.name + '.pdf';
+          document.body.appendChild(a);
+          a.click();
+        },
+          (error) => {
+            console.log('getPDF error: ', error);
+          }
+        );
+    }
+
+  }
+
 }

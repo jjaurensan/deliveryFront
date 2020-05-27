@@ -33,14 +33,22 @@
 </p-table>
 
 <p-dialog header="customer Details" [(visible)]="displayDialog" [focusOnShow]="false" showEffect="fade" [modal]="true"
-    [style]="{width: '300px'}">
+    [style]="{width: '500px'}">
     <div class="ui-g ui-fluid" *ngIf="customer">
         <div class="ui-g-12">
             <div class="ui-g-4">
                 <label for="customerNumber">Numero Client</label>
             </div>
             <div class="ui-g-8">
-                <input pInputText id="customerNumber" [(ngModel)]="customer.customerNumber" autofocus />
+                <input pInputText id="customerNumber" [(ngModel)]="customer.customerNumber" autofocus required="true" />
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="contactName">Nom Client</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="contactName" [(ngModel)]="customer.contactName" autofocus required="true" />
             </div>
         </div>
 
@@ -49,20 +57,22 @@
                 <label for="customerListDeliveryAddress">Address</label>
             </div>
             <div class="ui-g-8">
-                <input pInputText id="Address_streetOne" [(ngModel)]="newAddress.streetOne" placeholder="Rue 1" />
-                <input pInputText id="Address_streetTwo" [(ngModel)]="newAddress.streetTwo" placeholder="Rue 2"/>
-                <input pInputText id="Address_streetThree" [(ngModel)]="newAddress.streetThree" placeholder="Rue 3"/>
-                <input pInputText id="Address_zipCode" [(ngModel)]="newAddress.zipCode" placeholder="Code Postale"/>
-                <input pInputText id="Address_city" [(ngModel)]="newAddress.city" placeholder="Ville" />
+                <input pInputText id="Address_streetOne" [(ngModel)]="newAddress.streetOne" placeholder="Rue 1"
+                    required="true" />
+                <input pInputText id="Address_streetTwo" [(ngModel)]="newAddress.streetTwo" placeholder="Rue 2" />
+                <input pInputText id="Address_streetThree" [(ngModel)]="newAddress.streetThree" placeholder="Rue 3" />
+                <input pInputText id="Address_zipCode" [(ngModel)]="newAddress.zipCode" placeholder="Code Postale"
+                    required="true" />
+                <input pInputText id="Address_city" [(ngModel)]="newAddress.city" placeholder="Ville" required="true" />
             </div>
         </div>
+
         <div class="ui-g-12" *ngIf="isNewCustomer">
             <div class="ui-g-4">
-                <label for="customerListDeliveryAddress">Floor</label>
+                <label for="customerListDeliveryAddress">Etage</label>
             </div>
             <div class="ui-g-8">
                 <p-checkbox id="Address_floor" [(ngModel)]="newAddress.floor" binary="true"></p-checkbox>
-
             </div>
         </div>
 
@@ -77,15 +87,22 @@
                 <input pInputText id="Address_streetThree" [(ngModel)]="address.streetThree" />
                 <input pInputText id="Address_zipCode" [(ngModel)]="address.zipCode" />
                 <input pInputText id="Address_city" [(ngModel)]="address.city" />
-
+                <div class="ui-g-4">
+                    <label for="Address_floor">Etage</label>
+                </div>
+                <div class="ui-g-4">
+                    <p-checkbox id="Address_floor" [(ngModel)]="address.floor" binary="true"></p-checkbox>
+                </div>
+                <button type="button" (click)="show()" pButton icon="pi pi-info-circle" label="Add+"></button>
             </div>
         </div>
+
         <div class="ui-g-12">
             <div class="ui-g-4">
                 <label for="phone">Telephone</label>
             </div>
             <div class="ui-g-8">
-                <input pInputText id="phone" [(ngModel)]="customer.phone" />
+                <input pInputText id="phone" [(ngModel)]="customer.phone" required="true" />
             </div>
         </div>
         <div class="ui-g-12">
@@ -93,14 +110,15 @@
                 <label for="arragement">Rangement</label>
             </div>
             <div class="ui-g-8">
-                <input pInputText id="arragement" [(ngModel)]="customer.arragement" />
+                <p-checkbox id="arragement" [(ngModel)]="customer.arragement" binary="true"></p-checkbox>
             </div>
         </div>
     </div>
-    <p-footer>
-        <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" pButton icon="pi pi-times" (click)="delete()" label="Delete"></button>
-            <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
-        </div>
-    </p-footer>
+        <p-footer>
+            <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                <button type="button" pButton icon="pi pi-times" (click)="delete()" label="Delete"></button>
+                <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
+            </div>
+        </p-footer>
+    
 </p-dialog>

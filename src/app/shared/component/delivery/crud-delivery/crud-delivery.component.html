@@ -70,6 +70,16 @@
             </div>
         </div>
         <!-- END CUSTOMER SELECT -->
+        <div class="ui-g-12" *ngIf="delivery.customer && delivery.customer.customerListDeliveryAddress.length > 1">
+            <div class="ui-g-4">
+                <label for="address">Addresse</label>
+            </div>
+            <div class="ui-g-8">
+                <p-dropdown [options]="delivery.customer.customerListDeliveryAddress" [(ngModel)]="delivery.address" optionLabel="streetOne"
+                    [showClear]="true" filter="true" ></p-dropdown>
+            </div>
+            
+        </div>
 
         <div class="ui-g-12">
             <div class="ui-g-4">
